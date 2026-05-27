@@ -1,0 +1,6 @@
+{
+  "name": "Kinga Waliszewska - Wirtualna Asystentka",
+  "description": "Premium, nowoczesna strona wirtualnej asystentki od nieruchomości w Warszawie.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

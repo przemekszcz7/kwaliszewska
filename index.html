@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kinga Waliszewska — Wirtualna Asystentka od Nieruchomości | Warszawa</title>
+    <!-- Favicon -->
+    <link rel="icon" href="https://i.ibb.co/TDxKHTFV/686338198-27254613767457523-557584586532857804-n.jpg" type="image/jpeg">
+    <!-- Google Fonts: Barlow Condensed & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* COLOR PALETTE (Strict adherence to specified colors) */
+        :root {
+            --color-dark-green: #1B4332;
+            --color-mid-green: #2D6A4F;
+            --color-light-green: #D8F3DC;
+            --color-orange: #E76F00;
+            --color-orange-light: #FF8C1A;
+            --color-off-white: #F9F7F4;
+            --color-near-black: #0D1B14;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* RESET & BASE STYLES */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--color-off-white);
+            color: var(--color-near-black);
+            line-height: 1.6;
+            overflow-x: hidden;
+            letter-spacing: -0.01em;
+        }
+
+        /* TYPOGRAPHY UTILITIES */
+        h1, h2, h3, h4, .font-display {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+            text-transform: uppercase;
+        }
+
+        .label-caps {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--color-orange);
+            display: inline-block;
+            margin-bottom: 0.75rem;
+        }
+
+        /* LAYOUT & UTILITIES */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* SCROLL ANIMATION EFFECTS */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* STICKY HEADER SYSTEM */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background-color: rgba(249, 247, 244, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(27, 67, 50, 0.08);
+            transition: var(--transition-smooth);
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 20px rgba(13, 27, 20, 0.04);
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 4.5rem;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--color-dark-green);
+        }
+
+        .logo-monogram {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 1.75rem;
+            background-color: var(--color-dark-green);
+            color: var(--color-off-white);
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0;
+            letter-spacing: -0.05em;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .logo-name {
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+        }
+
+        .logo-title {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.875rem;
+            text-decoration: none;
+            color: var(--color-dark-green);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: var(--transition-smooth);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--color-orange);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-orange);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* BUTTONS & PILLS */
+        .phone-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--color-orange);
+            color: white;
+            padding: 0.6rem 1.25rem;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            border-radius: 9999px;
+            transition: var(--transition-smooth);
+        }
+
+        .phone-pill:hover {
+            background-color: var(--color-orange-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(231, 111, 0, 0.25);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-orange {
+            background-color: var(--color-orange);
+            color: white !important;
+        }
+
+        .btn-orange:hover {
+            background-color: var(--color-orange-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(231, 111, 0, 0.3);
+        }
+
+        .btn-ghost-green {
+            background-color: transparent;
+            border: 1px solid var(--color-mid-green);
+            color: var(--color-dark-green) !important;
+        }
+
+        .btn-ghost-green:hover {
+            background-color: rgba(45, 106, 79, 0.08);
+            transform: translateY(-2px);
+        }
+
+        .btn-ghost-white {
+            background-color: transparent;
+            border: 1px solid var(--color-light-green);
+            color: white !important;
+        }
+
+        .btn-ghost-white:hover {
+            background-color: rgba(216, 243, 220, 0.15);
+            transform: translateY(-2px);
+        }
+
+        /* MOBILE MENU HAMBURGER */
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            width: 28px;
+            height: 20px;
+            justify-content: space-between;
+            z-index: 1000;
+        }
+
+        .mobile-toggle span {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--color-dark-green);
+            transition: var(--transition-smooth);
+            transform-origin: left center;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--color-dark-green);
+            z-index: 900;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            padding: 2rem;
+            transform: translateY(-100%);
+            transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mobile-menu a {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--color-off-white);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: var(--transition-smooth);
+        }
+
+        .mobile-menu a:hover {
+            color: var(--color-orange);
+            transform: scale(1.05);
+        }
+
+        .mobile-menu .phone-pill {
+            margin-top: 1rem;
+            font-size: 1.25rem;
+            padding: 0.8rem 2rem;
+        }
+
+        /* ELEGANT CSS DOT ACCENTS */
+        .dot-matrix {
+            background-image: radial-gradient(var(--color-mid-green) 1px, transparent 1px);
+            background-size: 24px 24px;
+            opacity: 0.05;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        /* ASYMMETRIC GRID SECTIONS WITH GRADIENT FALLBACK FOR SKEW */
+        section {
+            position: relative;
+            padding: 7rem 0;
+        }
+
+        /* SKEWED CLIP PATH DECORATION SYSTEM (Degrades cleanly to straight line if unsupported) */
+        .skew-bottom {
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 3.5vw), 0 100%);
+            padding-bottom: calc(7rem + 3.5vw) !important;
+        }
+
+        .skew-top {
+            clip-path: polygon(0 3.5vw, 100% 0, 100% 100%, 0 100%);
+            padding-top: calc(7rem + 3.5vw) !important;
+        }
+
+        .skew-both {
+            clip-path: polygon(0 3.5vw, 100% 0, 100% calc(100% - 3.5vw), 0 100%);
+            padding-top: calc(7rem + 3.5vw) !important;
+            padding-bottom: calc(7rem + 3.5vw) !important;
+        }
+
+        @supports not (clip-path: polygon(0 0)) {
+            .skew-bottom, .skew-top, .skew-both {
+                border-bottom: 4px solid var(--color-orange);
+                clip-path: none !important;
+                padding-top: 7rem !important;
+                padding-bottom: 7rem !important;
+            }
+        }
+
+        /* SECTION 1: HERO */
+        #hero {
+            min-h-viewport: 100vh;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background-color: var(--color-off-white);
+            padding-top: 6rem;
+            padding-bottom: 4rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            z-index: 2;
+        }
+
+        .hero-overline {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-mid-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: clamp(3.25rem, 6.5vw, 5.5rem);
+            color: var(--color-dark-green);
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .hero-title span {
+            display: block;
+        }
+
+        .hero-title span:last-child {
+            color: var(--color-orange);
+        }
+
+        .hero-lead {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--color-near-black);
+            max-width: 520px;
+            margin-bottom: 2.5rem;
+            line-height: 1.5;
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--color-orange);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+        }
+
+        /* Abstract elegant geometric composition (No Images) */
+        .hero-visual {
+            position: relative;
+            height: 480px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .geo-slab-1 {
+            position: absolute;
+            background-color: var(--color-mid-green);
+            width: 75%;
+            height: 80%;
+            top: 5%;
+            left: 5%;
+            box-shadow: 0 10px 40px rgba(27, 67, 50, 0.15);
+            border-left: 1px solid rgba(216, 243, 220, 0.4);
+            transition: var(--transition-smooth);
+        }
+
+        .geo-slab-2 {
+            position: absolute;
+            background-color: var(--color-orange);
+            width: 65%;
+            height: 65%;
+            bottom: 5%;
+            right: 5%;
+            box-shadow: 20px 20px 0px var(--color-light-green);
+            transition: var(--transition-smooth);
+        }
+
+        .geo-slab-accent {
+            position: absolute;
+            border: 2px solid var(--color-dark-green);
+            width: 25%;
+            height: 35%;
+            bottom: 20%;
+            left: -5%;
+            z-index: 3;
+            pointer-events: none;
+        }
+
+        .geo-label {
+            position: absolute;
+            bottom: 15%;
+            right: 15%;
+            transform: rotate(-90deg) translateX(50%);
+            transform-origin: right bottom;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: rgba(249, 247, 244, 0.08);
+            text-transform: uppercase;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        /* Animated Scroll Indicators */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--color-dark-green);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .scroll-arrow {
+            width: 1px;
+            height: 50px;
+            background-color: rgba(27, 67, 50, 0.25);
+            margin-top: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-arrow::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background-color: var(--color-orange);
+            animation: scrolldown 2s infinite ease-in-out;
+        }
+
+        @keyframes scrolldown {
+            0% { top: -15px; }
+            50% { top: 100%; }
+            100% { top: 100%; }
+        }
+
+        /* SECTION 2: PROBLEM (Dark Green) */
+        #problem {
+            background-color: var(--color-dark-green);
+            color: white;
+        }
+
+        .section-headline {
+            font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+            margin-bottom: 3.5rem;
+            max-width: 900px;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .problem-column {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 1px solid rgba(216, 243, 220, 0.15);
+        }
+
+        .problem-column::before {
+            content: '';
+            position: absolute;
+            top: 0.75rem;
+            left: 0;
+            width: 1.25rem;
+            height: 2px;
+            background-color: var(--color-orange);
+        }
+
+        .problem-column h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-light-green);
+            margin-bottom: 1rem;
+            letter-spacing: 0.02em;
+        }
+
+        .problem-column p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            opacity: 0.85;
+        }
+
+        .problem-accent-callout {
+            border-top: 1px solid rgba(216, 243, 220, 0.2);
+            padding-top: 3rem;
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .problem-statement {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(1.75rem, 3vw, 2.5rem);
+            font-weight: 900;
+            color: var(--color-off-white);
+            max-width: 700px;
+            line-height: 1.1;
+        }
+
+        .problem-statement span {
+            color: var(--color-orange);
+        }
+
+        /* SECTION 3: SERVICES (Light BG) */
+        #services {
+            background-color: var(--color-off-white);
+        }
+
+        .asymmetry-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 2rem;
+            margin-top: 3.5rem;
+        }
+
+        .service-card {
+            background: white;
+            border-top: 4px solid var(--color-dark-green);
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(13, 27, 20, 0.02);
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 320px;
+        }
+
+        /* Asymmetric card sizing layout styling */
+        .service-card:nth-child(1) { grid-column: span 7; }
+        .service-card:nth-child(2) { grid-column: span 5; }
+        .service-card:nth-child(3) { grid-column: span 5; }
+        .service-card:nth-child(4) { grid-column: span 7; }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(13, 27, 20, 0.06);
+            border-top-color: var(--color-orange);
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .service-icon {
+            color: var(--color-orange);
+            background-color: rgba(231, 111, 0, 0.04);
+            width: 3.5rem;
+            height: 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+        }
+
+        .service-card:hover .service-icon {
+            background-color: var(--color-orange);
+            color: white;
+        }
+
+        .service-icon svg {
+            width: 1.75rem;
+            height: 1.75rem;
+            stroke-width: 1.5;
+        }
+
+        .service-watermark {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 900;
+            font-size: 3.5rem;
+            color: rgba(27, 67, 50, 0.04);
+            line-height: 1;
+        }
+
+        .service-card h3 {
+            font-size: 2rem;
+            color: var(--color-dark-green);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            color: var(--color-near-black);
+            opacity: 0.8;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* SECTION 4: WHY ME / ABOUT (Split screen) */
+        #about {
+            padding: 0;
+            display: grid;
+            grid-template-columns: 45% 55%;
+            min-height: 600px;
+            background-color: var(--color-dark-green);
+        }
+
+        .about-left {
+            background-color: var(--color-dark-green);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 6rem 10% 6rem 15%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-right {
+            background-color: var(--color-off-white);
+            color: var(--color-dark-green);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 6rem 15% 6rem 10%;
+        }
+
+        .giant-experience {
+            position: relative;
+            line-height: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .giant-num {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: clamp(10rem, 15vw, 15rem);
+            font-weight: 900;
+            color: var(--color-orange);
+            line-height: 0.8;
+        }
+
+        .giant-label {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: white;
+            line-height: 1.1;
+        }
+
+        .about-statements {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            width: 100%;
+        }
+
+        .about-assertion {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(45, 106, 79, 0.15);
+            font-size: clamp(1.25rem, 2vw, 1.75rem);
+            font-weight: 700;
+            color: var(--color-dark-green);
+            line-height: 1.3;
+            letter-spacing: -0.01em;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .about-assertion::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.6em;
+            width: 6px;
+            height: 6px;
+            background-color: var(--color-orange);
+        }
+
+        .about-assertion:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        /* SECTION 5: HOW IT WORKS */
+        #how-it-works {
+            background-color: var(--color-off-white);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+            position: relative;
+        }
+
+        /* Connecting dashed orange line */
+        .steps-container::before {
+            content: '';
+            position: absolute;
+            top: 2.25rem;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background-image: linear-gradient(to right, var(--color-orange) 50%, rgba(255,255,255,0) 0%);
+            background-position: top;
+            background-size: 15px 1px;
+            background-repeat: repeat-x;
+            z-index: 1;
+        }
+
+        .step-card {
+            position: relative;
+            z-index: 2;
+            background: white;
+            padding: 3rem 2rem 2.5rem 2rem;
+            box-shadow: 0 4px 20px rgba(13, 27, 20, 0.02);
+            border-top: 1px solid rgba(27, 67, 50, 0.06);
+            transition: var(--transition-smooth);
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(13, 27, 20, 0.05);
+        }
+
+        .step-num-bubble {
+            width: 4.5rem;
+            height: 4.5rem;
+            background-color: var(--color-dark-green);
+            color: var(--color-off-white);
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 3;
+            box-shadow: 0 0 0 6px var(--color-off-white);
+        }
+
+        .step-watermark {
+            position: absolute;
+            right: 1.5rem;
+            top: 1.5rem;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 6.5rem;
+            font-weight: 900;
+            color: rgba(45, 106, 79, 0.07);
+            line-height: 0.8;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .step-card h3 {
+            font-size: 1.4rem;
+            color: var(--color-dark-green);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            position: relative;
+            z-index: 3;
+        }
+
+        .step-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.8;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* SECTION 6: TESTIMONIAL */
+        #testimonial {
+            background-color: var(--color-dark-green);
+            color: white;
+            text-align: center;
+        }
+
+        .testimonial-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            padding: 4rem 1.5rem;
+        }
+
+        .quote-icon-container {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 11rem;
+            line-height: 0.1;
+            color: var(--color-orange);
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            pointer-events: none;
+            display: inline-block;
+        }
+
+        blockquote {
+            font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+            font-style: italic;
+            font-weight: 500;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: var(--color-off-white);
+        }
+
+        .testimonial-author {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.25rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: var(--color-light-green);
+        }
+
+        .testimonial-author span {
+            color: var(--color-orange);
+            font-weight: 900;
+        }
+
+        /* SECTION 7: CONTACT */
+        #contact {
+            background-color: var(--color-off-white);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 4rem;
+            margin-top: 3.5rem;
+            align-items: stretch;
+        }
+
+        /* Left Card Detail Component */
+        .contact-info-card {
+            background-color: var(--color-dark-green);
+            color: white;
+            padding: 3.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(13, 27, 20, 0.08);
+            border-bottom: 4px solid var(--color-orange);
+        }
+
+        .badge-24h {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background-color: var(--color-orange);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            padding: 0.4rem 0.9rem;
+        }
+
+        .contact-text-wrap h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--color-off-white);
+        }
+
+        .contact-text-wrap p {
+            font-size: 0.95rem;
+            opacity: 0.85;
+            margin-bottom: 3rem;
+            max-width: 320px;
+        }
+
+        .media-link-group {
+            display: flex;
+            flex-direction: column;
+            gap: 1.75rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .media-link-item {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            text-decoration: none;
+            color: white;
+            transition: var(--transition-smooth);
+        }
+
+        .media-link-item .icon-box {
+            background-color: rgba(255, 255, 255, 0.08);
+            width: 3rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-orange);
+            transition: var(--transition-smooth);
+        }
+
+        .media-link-item:hover .icon-box {
+            background-color: var(--color-orange);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .media-link-item .text-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .media-link-item .text-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0.6;
+        }
+
+        .media-link-item .text-val {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .contact-socials {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .social-circle-btn {
+            width: 3rem;
+            height: 3rem;
+            background-color: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+
+        .social-circle-btn:hover {
+            color: var(--color-orange);
+            background-color: var(--color-off-white);
+            transform: translateY(-2px);
+        }
+
+        /* Right Form Styling Component */
+        .contact-form-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            color: var(--color-dark-green);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background-color: white;
+            border: 2.5px solid var(--color-dark-green);
+            color: var(--color-near-black);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            border-radius: 0;
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--color-orange);
+        }
+
+        textarea.form-input {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--color-dark-green);
+            color: white;
+            padding: 5rem 0 3rem 0;
+            border-top: 1px solid rgba(216, 243, 220, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 0.8fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+
+        .footer-tagline {
+            font-size: 0.95rem;
+            opacity: 0.75;
+            max-width: 300px;
+            border-left: 2px solid var(--color-orange);
+            padding-left: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .footer-nav h4 {
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            color: var(--color-light-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: var(--transition-smooth);
+            width: max-content;
+        }
+
+        .footer-nav a:hover {
+            color: var(--color-orange);
+            transform: translateX(4px);
+        }
+
+        .footer-social-wrap h4 {
+            font-size: 1rem;
+            letter-spacing: 0.08em;
+            color: var(--color-light-green);
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.825rem;
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        /* RESPONSIVE DESIGN - MEDIA QUERIES */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+
+            .hero-lead {
+                margin: 0 auto 2.5rem auto;
+                padding-left: 0;
+                border-left: none;
+                border-top: 2px solid var(--color-orange);
+                padding-top: 1rem;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                height: 400px;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .asymmetry-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card:nth-child(1),
+            .service-card:nth-child(2),
+            .service-card:nth-child(3),
+            .service-card:nth-child(4) {
+                grid-column: span 12 / span 12;
+            }
+
+            #about {
+                grid-template-columns: 1fr;
+            }
+
+            .about-left {
+                padding: 5rem 1.5rem;
+                align-items: center;
+                text-align: center;
+            }
+
+            .about-right {
+                padding: 5rem 1.5rem;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .steps-container::before {
+                display: none;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 0.25rem 0;
+            }
+
+            .nav-links, .nav-wrapper > .phone-pill {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .hero-title {
+                font-size: 2.75rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY TOP NAVIGATION -->
+    <header id="main-header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <!-- Branding Left-aligned -->
+                <a href="#hero" class="logo-wrap">
+                    <div class="logo-monogram">KW</div>
+                    <div class="logo-text">
+                        <span class="logo-name">Kinga Waliszewska</span>
+                        <span class="logo-title">Wirtualna Asystentka · Nieruchomości</span>
+                    </div>
+                </a>
+
+                <!-- Navigation Links Center-aligned (Desktop Only) -->
+                <nav class="nav-links">
+                    <a href="#problem">W czym pomagam</a>
+                    <a href="#services">Oferta</a>
+                    <a href="#about">Dlaczego ja</a>
+                    <a href="#how-it-works">Jak działam</a>
+                    <a href="#contact">Kontakt</a>
+                </nav>
+
+                <!-- Phone Pill Right-aligned (Desktop Only) -->
+                <a href="tel:506417041" class="phone-pill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <span>506 417 041</span>
+                </a>
+
+                <!-- Mobile Hamburger toggle button -->
+                <button class="mobile-toggle" id="menu-toggle" aria-label="Otwórz menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION MENU BAR OVERLAY -->
+    <div class="mobile-menu" id="mobile-menu-overlay">
+        <a href="#problem" class="mobile-nav-link">W czym pomagam</a>
+        <a href="#services" class="mobile-nav-link">Oferta</a>
+        <a href="#about" class="mobile-nav-link">Dlaczego ja</a>
+        <a href="#how-it-works" class="mobile-nav-link">Jak działam</a>
+        <a href="#contact" class="mobile-nav-link">Kontakt</a>
+        <a href="tel:506417041" class="phone-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <span>506 417 041</span>
+        </a>
+    </div>
+
+    <!-- 1. HERO SECTION -->
+    <section id="hero">
+        <div class="dot-matrix"></div>
+        <div class="container">
+            <div class="hero-grid">
+                <!-- Left Details -->
+                <div class="hero-text reveal">
+                    <span class="hero-overline">Wirtualna asystentka od nieruchomości</span>
+                    <h1 class="hero-title">
+                        <span>Obsługa najmu.</span>
+                        <span>Bez stresu.</span>
+                    </h1>
+                    <p class="hero-lead">
+                        Wirtualna asystentka od nieruchomości · Warszawa · 10 lat doświadczenia zawodowego w branży. Twoje mieszkanie w dobrych rękach.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="tel:506417041" class="btn btn-orange">Zadzwoń teraz</a>
+                        <a href="mailto:waliszewska.wa@gmail.com" class="btn btn-ghost-green">Napisz e-mail</a>
+                    </div>
+                </div>
+
+                <!-- Right Overlapping CSS Slabs Representation (No images, premium raw layout) -->
+                <div class="hero-visual reveal">
+                    <div class="geo-slab-1"></div>
+                    <div class="geo-slab-2"></div>
+                    <div class="geo-slab-accent"></div>
+                    <div class="geo-label">WARSZAWA</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animated Scroll Icon -->
+        <a href="#problem" class="scroll-indicator" aria-label="Przewiń dalej">
+            <span>Poznaj szczegóły</span>
+            <div class="scroll-arrow"></div>
+        </a>
+    </section>
+
+    <!-- 2. PROBLEM / HOOK SECTION (Dark Green BG) -->
+    <section id="problem" class="skew-both">
+        <div class="container">
+            <div class="reveal">
+                <h2 class="section-headline">Masz mieszkanie na wynajem. I setki rzeczy do ogarnięcia.</h2>
+                
+                <div class="problem-grid">
+                    <div class="problem-column">
+                        <h3>Wyzwania Najmu</h3>
+                        <p>Wieczne poszukiwanie lokatorów, bezproduktywne prezentacje mieszkania, żmudna weryfikacja stabilności finansowej i ciągła obawa przed nietrafioną decyzją.</p>
+                    </div>
+                    <div class="problem-column">
+                        <h3>Rozliczenia i Liczniki</h3>
+                        <p>Skrupulatna kontrola terminowości wpłat, comiesięczne odczyty liczników, prognozy zużycia mediów oraz ciągła i męcząca walka z biurokracją.</p>
+                    </div>
+                    <div class="problem-column">
+                        <h3>Awarie i Eksploatacja</h3>
+                        <p>Nocne telefony o pękniętych rurach, uciążliwe awarie sprzętu AGD i nieustanny stres przy koordynowaniu pracy warszawskich fachowców.</p>
+                    </div>
+                </div>
+
+                <div class="problem-accent-callout">
+                    <div class="problem-statement">
+                        Ja to ogarniam. <span>Ty masz czas na inne zajęcia.</span>
+                    </div>
+                    <a href="#contact" class="btn btn-orange">Odciąż swój grafik</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. SERVICES SECTION (Light BG) -->
+    <section id="services">
+        <div class="container">
+            <div class="reveal">
+                <span class="label-caps">Co robię</span>
+                <h2 class="section-headline" style="color: var(--color-dark-green);">Kompleksowe wsparcie dla Twojego świętego spokoju</h2>
+                
+                <div class="asymmetry-grid">
+                    <!-- Service 1: Najem -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            </div>
+                            <div class="service-watermark">01</div>
+                        </div>
+                        <div class="service-details">
+                            <h3>Najem</h3>
+                            <p>Skuteczny marketing nieruchomości, organizacja prezentacji w Warszawie, selekcja i rzetelna weryfikacja potencjalnych lokatorów oraz sprawny onboarding najemcy.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 2: Liczniki -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                            </div>
+                            <div class="service-watermark">02</div>
+                        </div>
+                        <div class="service-details">
+                            <h3>Liczniki</h3>
+                            <p>Precyzyjne, regularne spisywanie stanów liczników, bieżąca kontrola opłat, wystawianie i rozliczanie mediów, dostarczanie jasnych raportów finansowych.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 3: Awarie -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                            </div>
+                            <div class="service-watermark">03</div>
+                        </div>
+                        <div class="service-details">
+                            <h3>Awarie</h3>
+                            <p>Błyskawiczny kontakt, koordynacja niespodziewanych napraw, rekrutacja i nadzór nad zaufanymi fachowcami bez angażowania Twojego prywatnego czasu wolnego.</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 4: Dokumenty -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                            </div>
+                            <div class="service-watermark">04</div>
+                        </div>
+                        <div class="service-details">
+                            <h3>Dokumenty</h3>
+                            <p>Przygotowanie bezpiecznych i sprawdzonych umów najmu okazjonalnego, sporządzenie precyzyjnych protokołów zdawczo-odbiorczych oraz pełne archiwizowanie korespondencji.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. WHY ME / ABOUT SECTION (Asymmetric Split Layout) -->
+    <section id="about">
+        <!-- Left panel - dark green bg with giant golden 10 -->
+        <div class="about-left">
+            <div class="reveal">
+                <div class="giant-experience">
+                    <div class="giant-num">10</div>
+                </div>
+                <div class="giant-label">lat doświadczenia</div>
+            </div>
+        </div>
+
+        <!-- Right panel - clean warm bg with assertions -->
+        <div class="about-right">
+            <div class="reveal" style="width: 100%;">
+                <span class="label-caps">Dlaczego ja</span>
+                <h2 class="section-headline" style="color: var(--color-dark-green); margin-bottom: 3rem;">Konkretne zasady pracy</h2>
+                
+                <div class="about-statements">
+                    <div class="about-assertion">
+                        Zdejmuję zarządzanie najmem z głowy właściciela.
+                    </div>
+                    <div class="about-assertion">
+                        Działam szybko i konkretnie — bez zbędnych formalności.
+                    </div>
+                    <div class="about-assertion">
+                        Twoje mieszkanie traktuję jak własne.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. HOW IT WORKS SECTION (Light BG, numbered steps) -->
+    <section id="how-it-works">
+        <div class="container">
+            <div class="reveal">
+                <span class="label-caps">Jak działam</span>
+                <h2 class="section-headline" style="color: var(--color-dark-green);">Trzy proste kroki do wolnego czasu</h2>
+
+                <div class="steps-container">
+                    <!-- Step 1 -->
+                    <div class="step-card">
+                        <div class="step-num-bubble">01</div>
+                        <div class="step-watermark">KROK</div>
+                        <h3>Kontaktujesz się ze mną</h3>
+                        <p>Dzwonisz lub wysyłasz e-mail. Rozmawiamy o Twojej nieruchomości w Warszawie i wyzwaniach technicznych lub najemcach, z którymi się mierzysz.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="step-card">
+                        <div class="step-num-bubble">02</div>
+                        <div class="step-watermark">KROK</div>
+                        <h3>Ustalamy zakres współpracy</h3>
+                        <p>Dopasowujemy listę zadań asystenckich dokładnie pod Twoje osobiste potrzeby — od wybiórczej pomocy po kompleksowy nadzór nad całym lokalem.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="step-card">
+                        <div class="step-num-bubble">03</div>
+                        <div class="step-watermark">KROK</div>
+                        <h3>Ogarniam wszystko za Ciebie</h3>
+                        <p>Przejmuję obowiązki, nadzoruję administrację i naprawy, a Ty cieszysz się stałym, comiesięcznym ROI bez zbędnych, frustrujących stresów.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. TESTIMONIAL / QUOTE (Dark green bg, full width) -->
+    <section id="testimonial" class="skew-both">
+        <div class="container">
+            <div class="reveal">
+                <div class="testimonial-container">
+                    <div class="quote-icon-container">„</div>
+                    <blockquote>
+                        Współpraca z Kingą to najlepsza decyzja, jaką podjąłem jako właściciel dwóch mieszkań na Mokotowie. Wszystkie sprawy z najemcami, rozliczeniami liczników i nagłymi usterkami są załatwiane natychmiastowo i profesjonalnie. Wreszcie mam święty spokój i czas dla siebie. Polecam każdemu wynajmującemu w Warszawie!
+                    </blockquote>
+                    <div class="testimonial-author">Piotr · <span>Śródmieście / Mokotów</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CONTACT (Light bg, asym grid) -->
+    <section id="contact">
+        <div class="container">
+            <div class="reveal">
+                <span class="label-caps">Kontakt</span>
+                <h2 class="section-headline" style="color: var(--color-dark-green);">Porozmawiajmy o Twoim mieszkaniu</h2>
+
+                <div class="contact-grid">
+                    <!-- Left: Details Card Info -->
+                    <div class="contact-info-card">
+                        <div class="badge-24h">Odpowiadam w ciągu 24h</div>
+                        
+                        <div class="contact-text-wrap">
+                            <h3>Kinga Waliszewska</h3>
+                            <p>Wirtualna asystentka od nieruchomości. Pomagam zarządzać mieszkaniami w Warszawie w sposób bezstresowy.</p>
+                        </div>
+
+                        <div class="media-link-group">
+                            <!-- Phone -->
+                            <a href="tel:506417041" class="media-link-item">
+                                <div class="icon-box">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone-call"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/><path d="M14.05 2a9 9 0 0 1 8 8"/><path d="M14.05 5.65a5 5 0 0 1 4.3 4.3"/></svg>
+                                </div>
+                                <div class="text-group">
+                                    <span class="text-label">Zadzwoń bezpośrednio</span>
+                                    <span class="text-val">506 417 041</span>
+                                </div>
+                            </a>
+
+                            <!-- Email -->
+                            <a href="mailto:waliszewska.wa@gmail.com" class="media-link-item">
+                                <div class="icon-box">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                </div>
+                                <div class="text-group">
+                                    <span class="text-label">Napisz wiadomość</span>
+                                    <span class="text-val" style="font-size: 1.05rem;">waliszewska.wa@gmail.com</span>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div>
+                            <div class="contact-socials">
+                                <a href="https://www.facebook.com/profile.php?id=61589031725422" target="_blank" class="social-circle-btn" aria-label="Profil Facebook Kinga Waliszewska">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                                </a>
+                                <a href="https://www.instagram.com/waliszewska_kinga/" target="_blank" class="social-circle-btn" aria-label="Profil Instagram Kinga Waliszewska">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Form Container -->
+                    <div class="contact-form-container">
+                        <form action="mailto:waliszewska.wa@gmail.com" method="GET" class="contact-form" enctype="text/plain">
+                            <!-- Subtle fields to pass subject and body parameters to the mail client fallback -->
+                            <input type="hidden" name="subject" value="Zapytanie ze strony www">
+                            
+                            <div class="form-group">
+                                <label for="form-name">Imię i nazwisko</label>
+                                <input type="text" id="form-name" class="form-input" placeholder="np. Jan Kowalski" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="form-contact">Sposób kontaktu (telefon / e-mail)</label>
+                                <input type="text" id="form-contact" class="form-input" placeholder="np. +48 600 000 000 lub jan@kowalski.pl" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="form-msg">Treść wiadomości</label>
+                                <textarea id="form-msg" class="form-input" placeholder="Opisz krótko swoją nieruchomość oraz w czym mogę Ci pomóc..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-orange" style="font-size: 0.95rem;">Wyślij wiadomość →</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FOOTER SECTION -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Branding -->
+                <div class="footer-brand">
+                    <h2>KW</h2>
+                    <p class="logo-name" style="font-weight: 700; font-size: 1.15rem; text-transform: uppercase;">Kinga Waliszewska</p>
+                    <p class="logo-title" style="opacity: 0.7; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em;">Wirtualna asystentka od nieruchomości</p>
+                    <p class="footer-tagline">"Twoje mieszkanie. Moje zadanie."</p>
+                </div>
+
+                <!-- Navigation List Repeated -->
+                <div class="footer-nav">
+                    <h4>Menu asystentki</h4>
+                    <a href="#problem">W czym pomagam</a>
+                    <a href="#services">Oferta usługowa</a>
+                    <a href="#about">Dlaczego ja</a>
+                    <a href="#how-it-works">Jak działam</a>
+                    <a href="#contact">Napisz do mnie</a>
+                </div>
+
+                <!-- Social wrapper -->
+                <div class="footer-social-wrap">
+                    <h4>Kanały społecznościowe</h4>
+                    <div class="contact-socials">
+                        <a href="https://www.facebook.com/profile.php?id=61589031725422" target="_blank" class="social-circle-btn" aria-label="Facebook">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/waliszewska_kinga/" target="_blank" class="social-circle-btn" aria-label="Instagram">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Credits -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 Kinga Waliszewska · Wirtualna Asystentka od Nieruchomości · Warszawa · Wszelkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- VANILLA JAVASCRIPT FOR DYNAMIC INTERACTIONS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. STICKY HEADER SCROLL CLASS TOGGLE
+            const header = document.getElementById('main-header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+
+            // 2. MOBILE MENU DRAWER OVERLAY TOGGLE
+            const menuToggle = document.getElementById('menu-toggle');
+            const mobileMenu = document.getElementById('mobile-menu-overlay');
+            const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+            const toggleMobileMenu = () => {
+                const isActive = mobileMenu.classList.toggle('active');
+                menuToggle.setAttribute('aria-expanded', isActive);
+                
+                // Animate hamburger lines
+                const spans = menuToggle.querySelectorAll('span');
+                if (isActive) {
+                    spans[0].style.transform = 'rotate(45deg) translate(2px, 2px)';
+                    spans[1].style.opacity = '0';
+                    spans[2].style.transform = 'rotate(-45deg) translate(2px, -2px)';
+                    spans.forEach(s => s.style.backgroundColor = 'var(--color-off-white)');
+                } else {
+                    spans[0].style.transform = 'none';
+                    spans[1].style.opacity = '1';
+                    spans[2].style.transform = 'none';
+                    spans.forEach(s => s.style.backgroundColor = 'var(--color-dark-green)');
+                }
+            };
+
+            menuToggle.addEventListener('click', toggleMobileMenu);
+
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileMenu.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+                });
+            });
+
+            // 3. INTERSECTION OBSERVER FOR PREMIUM SCROLL ENTRANCE ANIMATIONS
+            const animatedElements = document.querySelectorAll('.reveal');
+            
+            const observerOptions = {
+                root: null,
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target); // Trigger animation once
+                    }
+                });
+            }, observerOptions);
+
+            animatedElements.forEach(el => revealObserver.observe(el));
+
+            // 4. MAILTO DYNAMIC FORM BODY FORMATTING FALLBACK
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', (event) => {
+                    const name = document.getElementById('form-name').value;
+                    const contact = document.getElementById('form-contact').value;
+                    const message = document.getElementById('form-msg').value;
+
+                    // Build elegant body formatting for the local mail agent client
+                    const mailtoBody = `Imię i nazwisko: ${name}\nSposób kontaktu: ${contact}\n\nTreść wiadomości:\n${message}`;
+                    
+                    // Standard action mailto setting
+                    contactForm.action = `mailto:waliszewska.wa@gmail.com?subject=Kontakt ze strony - ${encodeURIComponent(name)}&body=${encodeURIComponent(mailtoBody)}`;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
